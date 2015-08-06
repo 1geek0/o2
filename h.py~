@@ -30,8 +30,10 @@ class MyHTMLParser(HTMLParser):
 					urlSet.add(link)
 
 parser = MyHTMLParser()
-toTH = []
+
+
 parser = MyHTMLParser()
+
 f = open('/home/geek/b.json', 'a+')
 try:
     import argparse
@@ -73,7 +75,6 @@ def get_credentials():
     return credentials
 
 def main():
-	noTh = 0
 	credentials = get_credentials()
 	http = credentials.authorize(httplib2.Http())
 	service = discovery.build('gmail', 'v1', http=http)
@@ -88,19 +89,16 @@ def main():
 		print('Threads:')
 		for thread in threads:
 			if thread['snippet'] == 'Confirm your email You&#39;re almost there! Please go to the following address to confirm your':
-				toTH.append(thread)
-				print('Thread No: ' + str(len(toTH)))
 				mainThread = service.users().threads().get(userId='me', id=thread['id']).execute()
 				messages = mainThread['messages']
-				x = 1
+				x = 3
 				l = 0
-				ln = len(messages)
 				print(len(messages))
-				while x<len(messages):
-					
+				while x>1:
+					x -= 1
 					#print(x)
-					print(str(x) + "/" + str(ln))
-					s = messages[ln - x]
+					print(str(len(messages)) + "-" + str(x))
+					s = messages[len(messages) - x]
 					msg_id = s['id']
 					message = service.users().messages().get(userId='me', id=msg_id,format='raw').execute()
 					t = '''http://mandrillapp.com/track/click/30146609/invites.=oneplus.net?p=3DeyJzIjoiNmhDWi05enhTMlRmcjB1eUxMMmJXUUhNOGhVIiwidiI6MSwicCI=6IntcInVcIjozMDE0NjYwOSxcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL2ludml0ZX=Mub25lcGx1cy5uZXRcXFwvY29uZmlybVxcXC9BMEE1NDJFNUY1NjAwRUZDRUU3N0QxOUI5OTQ3N=TkzRFwiLFwiaWRcIjpcImE1N2Q3N2VlNmQzYzQ0NTM4MDI5MDFjZTIzNWNiYmFjXCIsXCJ1cmxf=aWRzXCI6W1wiMjViZGM4MThhNGE2Mjg5ZDc0Mjg5MjI3ZmJiZmFjZjU5MDRhZDZiMlwiXX0ifQ'''
@@ -117,21 +115,17 @@ def main():
 					fin_parsed = quopri.decodestring(msg_str)
 					
 					parser.feed(fin_parsed)
-					x += 1
 			elif thread['snippet'] == 'You&#39;re on the list! Thanks for your interest in the OnePlus 2! You&#39;ll be notified once you':
-				toTH.append(thread)
-				print('Thread No: ' + str(len(toTH)))
 				mainThread = service.users().threads().get(userId='me', id=thread['id']).execute()
 				messages = mainThread['messages']
-				x = 1
+				x = 3
 				l = 0
-				ln = len(messages)
 				print(len(messages))
-				while x<len(messages):
-					
+				while x>1:
+					x -= 1
 					#print(x)
-					print(str(x) + "/" + str(ln))
-					s = messages[ln - x]
+					print(str(len(messages)) + "-" + str(x))
+					s = messages[len(messages) - x]
 					msg_id = s['id']
 					message = service.users().messages().get(userId='me', id=msg_id,format='raw').execute()
 					t = '''http://mandrillapp.com/track/click/30146609/invites.=oneplus.net?p=3DeyJzIjoiNmhDWi05enhTMlRmcjB1eUxMMmJXUUhNOGhVIiwidiI6MSwicCI=6IntcInVcIjozMDE0NjYwOSxcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL2ludml0ZX=Mub25lcGx1cy5uZXRcXFwvY29uZmlybVxcXC9BMEE1NDJFNUY1NjAwRUZDRUU3N0QxOUI5OTQ3N=TkzRFwiLFwiaWRcIjpcImE1N2Q3N2VlNmQzYzQ0NTM4MDI5MDFjZTIzNWNiYmFjXCIsXCJ1cmxf=aWRzXCI6W1wiMjViZGM4MThhNGE2Mjg5ZDc0Mjg5MjI3ZmJiZmFjZjU5MDRhZDZiMlwiXX0ifQ'''
@@ -146,7 +140,7 @@ def main():
 					ll = HeaderParser()
 					gfs = ll.parsestr(msg_str)
 					fin_parsed = quopri.decodestring(msg_str)
-					x += 1
+					
 					parser.feed(fin_parsed)
 	c = 0
 	urlList = list(urlSet)
