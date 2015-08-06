@@ -7,7 +7,7 @@ attempts = 0
 total = 0
 skip = 0
 gmailAddress = "typhoscientic"
-inviteToken = "3QVMJH"
+inviteToken = "JFXKR1"
 
 def insertDots(str, at):
 	if at == 0:
