@@ -161,7 +161,7 @@ def main():
 		else:
 			res = requests.get(item)
 			c += 1
-			print(c + '/' + len(urlList))
+			print(str(c) + '/' + len(urlList))
 				# print(str(s), file = f)
 				# 
 				# print(len(messages), file = f)
