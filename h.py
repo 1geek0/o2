@@ -32,7 +32,7 @@ class MyHTMLParser(HTMLParser):
 parser = MyHTMLParser()
 toTH = []
 parser = MyHTMLParser()
-f = open('/home/geek/b.json', 'a+')
+f = open('b.json', 'a+')
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
@@ -85,7 +85,8 @@ def main():
 	if not threads:
 		print('No threads found.')
 	else:
-		print('Threads:')
+		print('Threads: ')
+		print(len(threads))
 		for thread in threads:
 			if thread['snippet'] == 'Confirm your email You&#39;re almost there! Please go to the following address to confirm your':
 				toTH.append(thread)
