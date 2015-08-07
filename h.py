@@ -40,7 +40,7 @@ except ImportError:
     flags = None
 
 SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
-CLIENT_SECRET_FILE = '123.json'
+CLIENT_SECRET_FILE = '456.json'
 APPLICATION_NAME = 'My Project'
 
 
