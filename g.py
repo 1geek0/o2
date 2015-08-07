@@ -6,7 +6,7 @@ emailList = []
 attempts = 0
 total = 0
 skip = 0
-gmailAddress = "typhoscientic"
+gmailAddress = "nilayscience"
 inviteToken = "JFXKR1"
 
 def insertDots(str, at):
@@ -29,7 +29,7 @@ print "List: "
 #print emailList
 print
 
-h = 2500
+h = 1
 # for email in emailList:
 while h < 3500:
 	h += 1
